@@ -1,0 +1,125 @@
+#toolbar {
+	max-width: 1200px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.actions {
+	display: flex;
+	justify-content: space-around;
+}
+
+.action {
+	width: 30px;
+	height: 30px;
+}
+
+.visually-hidden {
+	display: none;
+}
+
+.colors {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.color {
+	width: 20px;
+	height: 20px;
+}
+
+.shape-dash {
+	background: url("dash.png");
+}
+
+.shape-circle {
+	background: url("circle.png");
+}
+
+.shape-triangle {
+	background: url("triangle.png");
+}
+
+.action-erase {
+	background: url("close.png")
+}
+
+.action-gerase {
+	background: url("close(1).png")
+}
+
+.action-share {
+	background: url("share.png")
+}
+
+.action-save {
+	background: url("save.png")
+}
+
+.action-load {
+	background: url("refresh.png")
+}
+
+.action-fill {
+	background: url("paint.png")
+}
+
+.color--black {
+	background-color: black;
+}
+
+.color--yellow {
+	background-color: yellow;
+}
+
+.color--blue {
+	background-color: blue;
+}
+
+.color--red {
+	background-color: red;
+}
+
+.color--green {
+	background-color: green;
+}
+
+.color--pink {
+	background-color: pink;
+}
+
+.color--teal {
+	background-color: teal;
+}
+
+.color--gold {
+	background-color: gold;
+}
+
+.color--deeppink {
+	background-color: deeppink;
+}
+
+.color--lime {
+	background-color: lime;
+}
+
+.color--maroon {
+	background-color: maroon;
+}
+
+.color--grey {
+	background-color: grey;
+}
+
+.color--orange {
+	background-color: orange;
+}
+
+.color--white {
+	background-color: white;
+}

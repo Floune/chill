@@ -1,0 +1,17 @@
+.paint {
+	height: 300px;
+	max-height: 300px;
+}
+
+#dessin {
+	width: 400px;
+	max-width: 400;
+	display: flex;
+	flex-direction: column;
+}
+
+#switch {
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+}

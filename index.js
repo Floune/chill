@@ -4,12 +4,21 @@ const app = express()
 const port = process.env.PORT || 8000
 const connexion = require('./connexion')
 const bodyParser = require('body-parser');
+const path = require('path')
+var http = require('http').createServer(app);
+
+var io = require('socket.io')(http);
+
+
 app.use(express.json());
+app.use(express.static('public'))
 
 app.use(bodyParser.urlencoded({ extended: true }));
+/*
 app.get('/', (req, res) => {
 	res.send('cadavre exquis')
 })
+//*/
 
 app.get('/shuffle', async (req, res) => {
 	const part1 = fetchParts(1)
@@ -43,3 +52,33 @@ function fetchParts(part) {
 app.listen(port, () => {
 	console.log(`Example app listening at http://localhost:${port}`)
 })
+
+io.on('connection', (socket) => {
+	console.log('a user connected');
+
+	socket.on('shuffle', () => {
+		//fetch data url
+		axios.get(`http://localhost:${port}/shuffle`).then(response => {
+			io.emit("shuffle", response.data)
+		}).catch(e => {
+			console.log(e.response)
+		})
+	})
+
+	socket.on("save", (data) => {
+		let part = "";
+		if (data.part === "tete") { part = 1}
+		if (data.part === "corps") { part = 2}
+		if (data.part === "jambes") { part = 3}
+
+		axios.post(`http://localhost:${port}/newdrawing`, {
+			part: part,
+			img: data.img
+		}).then(res => {
+			console.log(response)
+		}).catch(e => {
+			console.log(e)
+		})
+	})
+
+});
