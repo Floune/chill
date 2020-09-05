@@ -14,11 +14,6 @@ app.use(express.json());
 app.use(express.static('public'))
 
 app.use(bodyParser.urlencoded({ extended: true }));
-/*
-app.get('/', (req, res) => {
-	res.send('cadavre exquis')
-})
-//*/
 
 app.get('/shuffle', async (req, res) => {
 	const part1 = fetchParts(1)
@@ -49,7 +44,7 @@ function fetchParts(part) {
 }
 
 
-app.listen(port, () => {
+http.listen(port, () => {
 	console.log(`Example app listening at http://localhost:${port}`)
 })
 
