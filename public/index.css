@@ -1,0 +1,8 @@
+body {
+	background-color: teal;
+}
+
+.container {
+	display: flex;
+	justify-content: space-around;
+}
