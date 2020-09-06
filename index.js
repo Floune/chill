@@ -27,8 +27,12 @@ app.post('/newdrawing', (req, res) => {
 })
 
 app.get('/fetch', (req, res) => {
-	connexion.query("SELECT  FROM images WHERE 1", [req.body.img], function(error, results, fields);
+	const response = connexion.query("SELECT * FROM images");
 	res.send(response);
+})
+
+app.post('/delete', (req, res) => {
+	res.send(deleteImage(req.body.id))
 })
 
 
@@ -42,6 +46,11 @@ function saveDrawing(req) {
 
 function fetchParts(part) {
 	const response = connexion.query('SELECT image, part FROM images WHERE part = ? ORDER BY RAND() LIMIT 1', [part]);
+	return response;
+}
+
+function deleteImage(id) {
+	const response = connexion.query('DELETE FROM images WHERE id = ?', [id.id]);
 	return response;
 }
 
