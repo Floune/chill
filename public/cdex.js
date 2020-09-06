@@ -49,6 +49,10 @@ class CadavreExquis {
 	}
 
 	save() {
+		if (templates[this.part] === this.paint.toDataURL()) {
+			alert('pas de dessin vide')
+			return false;
+		}
 		window.socket.emit('save', {
 			img: this.paint.toDataURL(), 
 			part: this.part
