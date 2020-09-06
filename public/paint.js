@@ -150,6 +150,10 @@ class PainterBite {
 			}
 		})
 
+		document.addEventListener("mouseup", e => {
+			this.stopDrawing()
+		})
+
 	}
 
 }
