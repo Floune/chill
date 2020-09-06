@@ -1,7 +1,5 @@
 window.socket = io()
 window.socket.on("fetch", (data) => {
-	console.log("kikou")
-	console.log(data)
 	generateGalerie(data)
 })
 
@@ -17,12 +15,9 @@ function generateGalerie(images) {
 	const allButtonDelete = document.querySelectorAll(".btn-delete")
 
 	allButtonDelete.forEach(button => {
-		console.log(button)
 		button.addEventListener("click", function(e) {
-			console.log(e.target)
 			deleteImage(e.target.getAttribute("data-id-image"))
-			//window.location.reload()
-			
+			window.location.reload()
 		});	
 	})
 

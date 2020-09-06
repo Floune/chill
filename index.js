@@ -93,7 +93,6 @@ io.on('connection', (socket) => {
 				})
 
 	socket.on("fetch", () => {
-		console.log(process.env.SERVER)
 		axios.get(`http://localhost:${port}/fetch`).then(response => {
 			io.emit("fetch", response.data)
 		}).catch(e => {
