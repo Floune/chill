@@ -21,7 +21,7 @@ function generateGalerie(images) {
 		button.addEventListener("click", function(e) {
 			console.log(e.target)
 			deleteImage(e.target.getAttribute("data-id-image"))
-			window.location.reload()
+			//window.location.reload()
 			
 		});	
 	})
