@@ -1,0 +1,15 @@
+.galerie {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.btn-delete {
+	display: none;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.image-container:hover .btn-delete {
+	display: block;
+}

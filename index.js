@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 8000
 const connexion = require('./connexion')
+const axios = require("axios")
 const bodyParser = require('body-parser');
 const path = require('path')
 var http = require('http').createServer(app);
@@ -78,17 +79,31 @@ io.on('connection', (socket) => {
 	socket.on("save", (data) => {
 		let part = "";
 		if (data.part === "tete") { part = 1}
-		if (data.part === "corps") { part = 2}
-		if (data.part === "jambes") { part = 3}
+			if (data.part === "corps") { part = 2}
+				if (data.part === "jambes") { part = 3}
 
-		axios.post(`http://localhost:${port}/newdrawing`, {
-			part: part,
-			img: data.img
-		}).then(res => {
-			console.log(response)
+					axios.post(`http://localhost:${port}/newdrawing`, {
+						part: part,
+						img: data.img
+					}).then(res => {
+						console.log(response)
+					}).catch(e => {
+						console.log(e)
+					})
+				})
+
+	socket.on("fetch", () => {
+		console.log(process.env.SERVER)
+		axios.get(`http://${process.env.SERVER}:${port}/fetch`).then(response => {
+			io.emit("fetch", response.data)
 		}).catch(e => {
-			console.log(e)
+			console.log("prout")
 		})
 	})
+
+	socket.on("delete", id => {
+		axios.post(`http://${process.env.SERVER}:${port}/delete`, {id: id})
+	})
+
 
 });

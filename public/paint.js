@@ -143,6 +143,13 @@ class PainterBite {
 			this.stopDrawing(e)
 		});
 
+		document.addEventListener("keydown", e => {
+			console.log(e.key, e.keyCode)
+			if (e.keyCode === 65) {
+				this.startFill(e)
+			}
+		})
+
 	}
 
 }

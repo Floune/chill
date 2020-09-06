@@ -8,7 +8,7 @@
 	<link type="text/css" rel="stylesheet" href="toolbar.css">
 	<link type="text/css" rel="stylesheet" href="cdex.css">
 	<script type="text/javascript" src="floodfill.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
+	<script src="/socket.io.js"></script>
 	<title>megapaint</title>
 </head>
 <body>
@@ -32,7 +32,6 @@
 					<button data-action="setColor" data-color="white" class="color color--white"><span class="visually-hidden">white</span></button>
 					<button data-action="setColor" data-color="black" class="color color--black"><span class="visually-hidden">black</span></button>
 					<button data-action="setColor" data-color="blue" class="color color--blue"><span class="visually-hidden">blue</span></button>
-					<button data-action="setColor" data-color="salmon" class="color color--salmon"><span class="visually-hidden">blue</span></button>
 				</div>
 
 
@@ -42,41 +41,57 @@
 					<button data-action="setShape" data-shape="triangle" class="action shape-triangle"></button>
 					<button title="Remplir" data-action="startFill" class="action action-fill"></button>
 <!-- 					<input type="range" id="line-width" name="line-width"
-					min="1" max="20" step="1"> -->
-					<button title="Effacer" data-action="erase" class="action action-erase"></button>
-					<button title="Sauvegarder" data-action="save" class="action action-save"></button>
+	min="1" max="20" step="1"> -->
+	<button title="Effacer" data-action="erase" class="action action-erase"></button>
+	<button title="Sauvegarder" data-action="save" class="action action-save"></button>
 
-				</div>
+</div>
 
-			</div>
+</div>
 
-			<div class="paint">
-				<canvas id="canvas" width="400" height="300"></canvas>
-			</div>
+<div class="paint">
+	<canvas id="canvas" width="400" height="300"></canvas>
+</div>
 
-			<div id="hint">
-				
-			</div>
+<div id="hint">
+	
+</div>
 
-			<div id="switch">
-				<button data-action="switch" data-part="tete">Tête</button>
-				<button data-action="switch" data-part="corps">Corps</button>
-				<button data-action="switch" data-part="jambes">Jambes</button>
-			</div>
-		</div>
+<div id="switch">
+	<button data-action="switch" data-part="tete">Tête</button>
+	<button data-action="switch" data-part="corps">Corps</button>
+	<button data-action="switch" data-part="jambes">Jambes</button>
+</div>
+</div>
 
-		<div id="shuffle">
-			<div id="shuffle-panel">
-				<button data-action="shuffle">shuffle</button>
-			</div>
-			<div id="result">
-				
-			</div>
-		</div>
-
+<div id="shuffle">
+	<div id="shuffle-panel">
+		<button data-action="shuffle">shuffle</button>
 	</div>
-	<script src="cdex.js"></script>
-	<script src="templates.js"></script>
-	<script src="paint.js"></script>
+	<div id="result">
+		
+	</div>
+</div>
+
+</div>
+<script src="cdex.js"></script>
+<script src="templates.js"></script>
+<script src="paint.js"></script>
+<script>
+	var k = [38, 38, 40, 40, 37, 39, 37, 39],
+	n = 0;
+	document.addEventListener("keydown", e => {
+		if (e.keyCode === k[n++]) {
+			if (n === k.length) {
+            window.location.href="/galery.html" // à remplacer par votre code
+            n = 0;
+            return false;
+        }
+    }
+    else {
+    	n = 0;
+    }
+});
+</script>	
 </body>
 </html>
