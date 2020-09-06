@@ -10,6 +10,7 @@ class CadavreExquis {
 		this.context = this.paint.getContext('2d')
 		this.rect = this.paint.getBoundingClientRect()
 		this.hint()
+		this.erase()
 		this.loadTemplate()
 		this.listeners();
 	}
@@ -21,7 +22,6 @@ class CadavreExquis {
 	}
 
 	loadTemplate() {
-		this.erase()
 		var imageObj = new Image();
 		imageObj.src = templates[this.part];
 		imageObj.onload = () => {
@@ -34,6 +34,7 @@ class CadavreExquis {
 		this.context.clearRect(0, 0, this.paint.width, this.paint.height)
 		this.context.fillStyle = "white"
 		this.context.fillRect(0, 0, this.paint.width, this.paint.height)
+		this.loadTemplate()
 	}
 
 	bindClickEvent(e) {
@@ -74,7 +75,6 @@ class CadavreExquis {
 		document.querySelector("#result").appendChild(image1)
 		document.querySelector("#result").appendChild(image2)
 		document.querySelector("#result").appendChild(image3)
-
 	}
 
 	listeners() {
