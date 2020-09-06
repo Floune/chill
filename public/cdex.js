@@ -49,7 +49,6 @@ class CadavreExquis {
 	}
 
 	save() {
-		console.log("prout")
 		window.socket.emit('save', {
 			img: this.paint.toDataURL(), 
 			part: this.part
@@ -90,7 +89,6 @@ class CadavreExquis {
 		})
 
 		document.addEventListener("keydown", e => {
-			console.log(e.key, e.keyCode)
 			if (e.keyCode === 32) {
 				this.shuffle()
 			}

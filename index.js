@@ -70,7 +70,7 @@ io.on('connection', (socket) => {
 	socket.on('shuffle', () => {
 		//fetch data url
 		axios.get(`http://localhost:${port}/shuffle`).then(response => {
-			io.emit("shuffle", response.data)
+			socket.emit("shuffle", response.data)
 		}).catch(e => {
 			console.log(e.response)
 		})
