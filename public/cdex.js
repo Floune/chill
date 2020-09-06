@@ -96,7 +96,7 @@ class CadavreExquis {
 			if (e.keyCode === 32) {
 				this.shuffle()
 			}
-		})
+		}, {once: true})
 	}
 
 }
