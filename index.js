@@ -102,7 +102,7 @@ io.on('connection', (socket) => {
 	})
 
 	socket.on("delete", id => {
-		axios.post(`http://${process.env.SERVER}:${port}/delete`, {id: id})
+		axios.post(`http://localhost:${port}/delete`, {id: id})
 	})
 
 
