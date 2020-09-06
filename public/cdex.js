@@ -88,6 +88,13 @@ class CadavreExquis {
 		window.socket.on("shuffle", (data) => {
 			this.buildCadavre(data)
 		})
+
+		document.addEventListener("keydown", e => {
+			console.log(e.key, e.keyCode)
+			if (e.keyCode === 32) {
+				this.shuffle()
+			}
+		})
 	}
 
 }
