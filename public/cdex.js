@@ -75,12 +75,12 @@ class CadavreExquis {
 		image1.src = data.part1[0].image;
 		image2.src = data.part2[0].image;
 		image3.src = data.part3[0].image;
-		image1.style.width = "400px"
-		image1.style.height = "300px"
-		image2.style.width = "400px"
-		image2.style.height = "300px"
-		image3.style.width = "400px"
-		image3.style.height = "300px"
+		image1.style.width = "373px"
+		image1.style.height = "280px"
+		image2.style.width = "373px"
+		image2.style.height = "280px"
+		image3.style.width = "373px"
+		image3.style.height = "280px"
 		document.querySelector("#result").appendChild(image1)
 		document.querySelector("#result").appendChild(image2)
 		document.querySelector("#result").appendChild(image3)

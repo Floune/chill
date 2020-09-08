@@ -4,10 +4,19 @@
 }
 
 #dessin {
+	align-self: center;
 	width: 800px;
 	max-width: 800px;
 	display: flex;
 	flex-direction: column;
+	border: 5px solid blue;
+	border-radius: 10%;
+	background-color: blue;
+}
+
+canvas {
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
 }
 
 #switch {

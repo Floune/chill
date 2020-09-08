@@ -1,9 +1,71 @@
 body {
-	background-color: teal;
+	background-color: black;
+	overflow: hidden;
+	width: 100%;
 }
 
 .container {
+	z-index: -20;
 	display: flex;
 	justify-content: space-around;
-	align-items: flex-start;
+	align-items: center;
+}
+
+#hint {
+	align-self: center;
+	margin-top: 15px;
+}
+
+#switch {
+	margin-bottom: 15px;
+}
+
+#shuffle {
+	justify-content: center;
+	align-items: center;
+	height: 865px;
+	max-height: 865px;
+	background-color: black;
+}
+
+#shuffle-panel {
+	z-index: 200;
+}
+
+.rainbow {
+	z-index: -2;
+	top: 60%;
+	position: absolute;
+	width:130%;
+	left: -20%;
+	transform: rotate(40deg)
+}
+
+.arc {
+	height: 10px;
+	width: 100%;
+}
+
+.c1 {
+	background-color: red;
+}
+
+.c2 {
+	background-color: orange;
+}
+
+.c3 {
+	background-color: yellow;
+}
+
+.c4 {
+	background-color: green;
+}
+
+.c5 {
+	background-color: blue;
+}
+
+.c6 {
+	background-color: violet;
 }
