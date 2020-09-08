@@ -53,6 +53,7 @@ class PainterBite {
 
 
 	setColor(e)  {
+		console.log(this.paint.toDataURL())
 		this.color = e.getAttribute("data-color")
 	}
 

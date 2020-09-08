@@ -44,48 +44,47 @@
 					<button data-action="setShape" data-shape="rond" class="action shape-circle"></button>
 					<button data-action="setShape" data-shape="triangle" class="action shape-triangle"></button>
 					<button title="Remplir" data-action="startFill" class="action action-fill"></button>
-<!-- 					<input type="range" id="line-width" name="line-width"
-	min="1" max="20" step="1"> -->
-	<button title="Effacer" data-action="erase" class="action action-erase"></button>
-	<button title="Sauvegarder" data-action="save" class="action action-save"></button>
 
-</div>
+					<button title="Effacer" data-action="erase" class="action action-erase"></button>
+					<button title="Sauvegarder" data-action="save" class="action action-save"></button>
 
-</div>
+				</div>
 
-<div class="paint">
-	<canvas id="canvas" width="400" height="300"></canvas>
-</div>
+			</div>
 
-<div id="hint">
-</div>
+			<div class="paint">
+				<canvas id="canvas" width="800" height="600"></canvas>
+			</div>
 
-<div id="switch">
-	<button data-action="switch" data-part="tete">Tête</button>
-	<button data-action="switch" data-part="corps">Corps</button>
-	<button data-action="switch" data-part="jambes">Jambes</button>
-</div>
-</div>
+			<div id="hint">
+			</div>
 
-<div id="shuffle">
-	<div id="shuffle-panel">
-		<button data-action="shuffle">shuffle</button>
+			<div id="switch">
+				<button data-action="switch" data-part="tete">Tête</button>
+				<button data-action="switch" data-part="corps">Corps</button>
+				<button data-action="switch" data-part="jambes">Jambes</button>
+			</div>
+		</div>
+
+		<div id="shuffle">
+			<div id="shuffle-panel">
+				<button data-action="shuffle">shuffle</button>
+			</div>
+			<div id="result">
+				
+			</div>
+		</div>
+
 	</div>
-	<div id="result">
-		
-	</div>
-</div>
-
-</div>
-<script src="cdex.js"></script>
-<script src="templates.js"></script>
-<script src="paint.js"></script>
-<script>
-	var k = [38, 38, 40, 40, 37, 39, 37, 39],
-	n = 0;
-	document.addEventListener("keydown", e => {
-		if (e.keyCode === k[n++]) {
-			if (n === k.length) {
+	<script src="cdex.js"></script>
+	<script src="templates.js"></script>
+	<script src="paint.js"></script>
+	<script>
+		var k = [38, 38, 40, 40, 37, 39, 37, 39],
+		n = 0;
+		document.addEventListener("keydown", e => {
+			if (e.keyCode === k[n++]) {
+				if (n === k.length) {
             window.location.href="/galery.html" // à remplacer par votre code
             n = 0;
             return false;

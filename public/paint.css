@@ -1,11 +1,11 @@
 .paint {
-	height: 300px;
-	max-height: 300px;
+	height: 600px;
+	max-height: 600px;
 }
 
 #dessin {
-	width: 400px;
-	max-width: 400;
+	width: 800px;
+	max-width: 800px;
 	display: flex;
 	flex-direction: column;
 }
