@@ -6,7 +6,7 @@ class PainterBite {
 		this.shape = "trait"
 		this.isFilling = false
 		this.isDrawing = false
-		this.lineWidth = 3
+		this.lineWidth = 4
 		this.x = 0
 		this.y = 0
 		this.paint = document.getElementById('canvas')
