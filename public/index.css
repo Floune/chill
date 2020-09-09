@@ -11,6 +11,11 @@ body {
 	align-items: center;
 }
 
+.gauche {
+	display: flex;
+	flex-direction: column;
+}
+
 #hint {
 	align-self: center;
 	margin-top: 15px;
@@ -34,7 +39,6 @@ body {
 
 #readme {
 	color: white;
-	text-align: center;
 }
 
 .rainbow {
@@ -64,7 +68,7 @@ body {
 }
 
 .c4 {
-	background-color: green;
+	background-color: lightgreen;
 }
 
 .c5 {
