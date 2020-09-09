@@ -18,14 +18,18 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/shuffle', async (req, res) => {
-	const part1 = fetchParts(1)
-	const part2 = fetchParts(2)
-	const part3 = fetchParts(3)
-	res.json({
-		part1: part1,
-		part2: part2,
-		part3: part3,
+	fetchParts(1, (part1) => {
+		fetchParts(2, (part2) => {
+			fetchParts(3, (part3) => {
+				res.json({
+					part1: part1,
+					part2: part2,
+					part3: part3,
+				})
+			})
+		})
 	})
+	
 })
 
 app.post('/newdrawing', (req, res) => {
@@ -33,19 +37,23 @@ app.post('/newdrawing', (req, res) => {
 })
 
 app.get('/fetch', (req, res) => {
-	const response = connexion.query("SELECT * FROM images");
-	res.send(response)
+	connexion.query("SELECT * FROM images", (err, response, fields) => {
+		res.send(response)
+	});
 })
 
-app.post('/fetchSingle', (req, res) => {
-	const img = fetchParts(req.body.part)
-	res.json({
-		img
+app.post('/fetchSingle', async (req, res) => {
+	fetchParts(req.body.part, (img) => {
+		res.json({
+			img
+		})
 	})
 })
 
 app.post('/delete', (req, res) => {
-	res.send(deleteImage(req.body.id))
+	deleteImage(req.body.id, (result) => {
+		res.send(result)
+	})
 })
 
 function saveDrawing(req) {
@@ -56,14 +64,16 @@ function saveDrawing(req) {
 }
 
 
-function fetchParts(part) {
-	const response = connexion.query('SELECT image, part FROM images WHERE part = ? ORDER BY RAND() LIMIT 1', [part])
-	return response
+function fetchParts(part, cb) {
+	connexion.query('SELECT image, part FROM images WHERE part = ? ORDER BY RAND() LIMIT 1', [part], (error, result, fields) => {
+		cb(result)
+	})
 }
 
-function deleteImage(id) {
-	const response = connexion.query('DELETE FROM images WHERE id = ?', [id.id])
-	return response
+function deleteImage(id, cb) {
+	connexion.query('DELETE FROM images WHERE id = ?', [id.id], (error, resutl, fieds) => {
+		cb(resutl)
+	})
 }
 
 
@@ -125,5 +135,7 @@ io.on('connection', (socket) => {
 		})
 	})
 
-
+	socket.on("delete", id => {
+		axios.post(`http://localhost:${port}/delete`, {id: id})
+	})
 });

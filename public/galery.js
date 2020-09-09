@@ -16,7 +16,7 @@ function generateGalerie(images) {
 
 	allButtonDelete.forEach(button => {
 		button.addEventListener("click", function(e) {
-			deleteImage(e.target.getAttribute("data-id-image"))
+			deleteImage(e.target.getAttribute("data-id-image"))			
 			window.location.reload()
 		});	
 	})
@@ -24,7 +24,6 @@ function generateGalerie(images) {
 }
 
 function deleteImage(id) {
-	console.log(id);
 	window.socket.emit("delete", {id: id})
 }
 

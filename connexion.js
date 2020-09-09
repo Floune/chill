@@ -1,9 +1,9 @@
-'user strict';
+'use strict';
 
-const Mysql = require('sync-mysql') 
+const Mysql = require('mysql') 
 
 //local mysql db connection
-var connection = new Mysql({
+var connection = Mysql.createConnection({
     host : process.env.DB_HOST,
     user : process.env.DB_USER,
     password : process.env.DB_PASSWORD,
