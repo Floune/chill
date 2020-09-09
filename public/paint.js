@@ -13,8 +13,39 @@ class PainterBite {
 		this.context = this.paint.getContext('2d')
 		this.color = "black"
 		this.rect = this.paint.getBoundingClientRect()
+		this.undo_list = []
+		this.saveState()
 		this.erase()
 		this.listeners()
+	}
+
+	saveState() {
+		(this.undo_list).push(this.paint.toDataURL());   
+	}
+
+	undo() {
+		this.restoreState();
+	}
+
+	restoreState() {
+		if(this.undo_list.length === 0){
+			this.erase()
+		}
+		else if(this.undo_list.length === 1){
+			this.undo_list.pop();
+			this.erase()
+		}
+		else {
+			this.undo_list.pop();
+			var img = new Image();
+			img.src = this.undo_list.slice(-1)[0];
+			img.onload = () => {
+				this.erase()
+				this.context.drawImage(img, 0, 0);  
+			}
+
+		}
+
 	}
 
 
@@ -53,7 +84,6 @@ class PainterBite {
 
 
 	setColor(e)  {
-		console.log(this.paint.toDataURL())
 		this.color = e.getAttribute("data-color")
 	}
 
@@ -68,7 +98,7 @@ class PainterBite {
 			this.x = 0
 			this.y = 0
 			this.isDrawing = false
-		}
+		}		
 	}
 
 
@@ -140,6 +170,7 @@ class PainterBite {
 		});
 
 		this.paint.addEventListener('mouseup', e => {
+			this.saveState()
 			this.handleMove(e)
 			this.stopDrawing(e)
 		});

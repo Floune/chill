@@ -2,19 +2,20 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 8000
+const favicon = require("serve-favicon")
 const connexion = require('./connexion')
 const axios = require("axios")
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
 const path = require('path')
 var http = require('http').createServer(app);
 
 var io = require('socket.io')(http);
 
-
-app.use(express.json());
+app.use('/favicon.ico', express.static('favicon.ico'));
+app.use(express.json())
 app.use(express.static('public'))
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/shuffle', async (req, res) => {
 	const part1 = fetchParts(1)
@@ -28,36 +29,43 @@ app.get('/shuffle', async (req, res) => {
 })
 
 app.post('/newdrawing', (req, res) => {
-	saveDrawing(req);
+	saveDrawing(req)
 })
 
 app.get('/fetch', (req, res) => {
 	const response = connexion.query("SELECT * FROM images");
-	res.send(response);
+	res.send(response)
+})
+
+app.post('/fetchSingle', (req, res) => {
+	const img = fetchParts(req.body.part)
+	res.json({
+		img
+	})
 })
 
 app.post('/delete', (req, res) => {
 	res.send(deleteImage(req.body.id))
 })
 
-
 function saveDrawing(req) {
 	connexion.query("INSERT INTO images (image, part ) VALUES ( ?, ?)", [req.body.img, req.body.part], function(error, results, fields) {
-		if (error) throw error;
-		console.log(results);
+		if (error) throw error
+		console.log(results)
 	})
 }
 
 
 function fetchParts(part) {
-	const response = connexion.query('SELECT image, part FROM images WHERE part = ? ORDER BY RAND() LIMIT 1', [part]);
-	return response;
+	const response = connexion.query('SELECT image, part FROM images WHERE part = ? ORDER BY RAND() LIMIT 1', [part])
+	return response
 }
 
 function deleteImage(id) {
-	const response = connexion.query('DELETE FROM images WHERE id = ?', [id.id]);
-	return response;
+	const response = connexion.query('DELETE FROM images WHERE id = ?', [id.id])
+	return response
 }
+
 
 
 http.listen(port, () => {
@@ -65,7 +73,7 @@ http.listen(port, () => {
 })
 
 io.on('connection', (socket) => {
-	console.log('a user connected');
+	console.log('a user connected')
 
 	socket.on('shuffle', () => {
 		//fetch data url
@@ -79,29 +87,42 @@ io.on('connection', (socket) => {
 	socket.on("save", (data) => {
 		let part = "";
 		if (data.part === "tete") { part = 1}
-			if (data.part === "corps") { part = 2}
-				if (data.part === "jambes") { part = 3}
+		if (data.part === "corps") { part = 2}
+		if (data.part === "jambes") { part = 3}
 
-					axios.post(`http://localhost:${port}/newdrawing`, {
-						part: part,
-						img: data.img
-					}).then(res => {
-						console.log(response)
-					}).catch(e => {
-						console.log(e)
-					})
-				})
+		axios.post(`http://localhost:${port}/newdrawing`, {
+			part: part,
+			img: data.img
+		}).then(res => {
+			console.log(response)
+		}).catch(e => {
+			console.log(e)
+		})
+	})
 
 	socket.on("fetch", () => {
 		axios.get(`http://localhost:${port}/fetch`).then(response => {
 			io.emit("fetch", response.data)
 		}).catch(e => {
-			console.log("prout")
+			console.log(e)
 		})
 	})
 
-	socket.on("delete", id => {
-		axios.post(`http://localhost:${port}/delete`, {id: id})
+	socket.on("fetchSingle", (data) => {
+		let part = "";
+		if (data.part === "tete") { part = 1}
+		if (data.part === "corps") { part = 2}
+		if (data.part === "jambes") { part = 3}
+		axios.post(`http://localhost:${port}/fetchsingle`, {
+			part: part,
+		}).then(response => {
+			io.emit("fetchSingle", {
+				image: response.data,
+				part: data.part,
+			})
+		}).catch(e => {
+			console.log(e)
+		})
 	})
 
 

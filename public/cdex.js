@@ -11,12 +11,13 @@ class CadavreExquis {
 		this.rect = this.paint.getBoundingClientRect()
 		this.hint()
 		this.erase()
+		this.shuffle()
 		this.loadTemplate()
 		this.listeners();
 	}
 
 	hint() {
-		let msg = "Vous dessinez actiellement la " + this.part
+		let msg = "partie: " + this.part
 		var pe = document.querySelector("#hint");
 		pe.innerHTML = msg;
 	}
@@ -67,23 +68,46 @@ class CadavreExquis {
 		this.loadTemplate();
 	}
 
+	fetchSingle(e) {
+		window.socket.emit("fetchSingle", {part: e.getAttribute("data-part")})
+	}
+
 	buildCadavre(data) {
 		document.querySelector("#result").innerHTML = "";
 		var image1 = document.createElement("img");
 		var image2 = document.createElement("img");
 		var image3 = document.createElement("img");
+		
+		image1.setAttribute("data-part", "tete")
+		image2.setAttribute("data-part", "corps")
+		image3.setAttribute("data-part", "jambes")
+
+		image1.classList.add("img-clickable")
+		image2.classList.add("img-clickable")
+		image3.classList.add("img-clickable")
+
+		image1.classList.add("single-tete")
+		image2.classList.add("single-corps")
+		image3.classList.add("single-jambes")
+		
 		image1.src = data.part1[0].image;
 		image2.src = data.part2[0].image;
 		image3.src = data.part3[0].image;
+		
 		image1.style.width = "373px"
 		image1.style.height = "280px"
 		image2.style.width = "373px"
 		image2.style.height = "280px"
 		image3.style.width = "373px"
 		image3.style.height = "280px"
+		
 		document.querySelector("#result").appendChild(image1)
 		document.querySelector("#result").appendChild(image2)
 		document.querySelector("#result").appendChild(image3)
+	}
+
+	buildPart(src, part) {
+		document.querySelector(".single-" + part).src = src
 	}
 
 	listeners() {
@@ -98,11 +122,19 @@ class CadavreExquis {
 			this.buildCadavre(data)
 		})
 
+		window.socket.on("fetchSingle", (data) => {
+			this.buildPart(data.image.img[0].image, data.part)
+		})
+
 		document.addEventListener("keydown", e => {
 			if (e.keyCode === 32) {
 				this.shuffle()
 			}
 		}, {once: true})
+
+		document.querySelector("#result").addEventListener("click", (e) => {
+			this.fetchSingle(e.target)
+		})
 	}
 
 }

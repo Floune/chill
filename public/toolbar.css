@@ -73,6 +73,10 @@
 	background: url("paint.png")
 }
 
+.action-undo {
+	background: url("refresh.png");
+}
+
 .color--black {
 	background-color: black;
 }

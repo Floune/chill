@@ -9,14 +9,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.20.0",
     "dotenv": "^8.2.0",
+    "ent": "^2.2.0",
     "express": "^4.17.1",
     "knex": "^0.21.5",
     "mysql": "^2.18.1",
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^2.3.0",
     "sync-mysql": "^3.0.1",
-    "sync-sql": "^1.0.2",
-    "axios": "^0.20.0",
-    "ent": "^2.2.0",
-    "socket.io": "^2.3.0"
+    "sync-sql": "^1.0.2"
   }
 }
