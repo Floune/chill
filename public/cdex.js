@@ -126,11 +126,11 @@ class CadavreExquis {
 			this.buildPart(data.image.img[0].image, data.part)
 		})
 
-		document.addEventListener("keydown", e => {
+		document.addEventListener("keyup", e => {
 			if (e.keyCode === 32) {
 				this.shuffle()
 			}
-		}, {once: true})
+		})
 
 		document.querySelector("#result").addEventListener("click", (e) => {
 			this.fetchSingle(e.target)
