@@ -5,11 +5,8 @@ window.socket.on("fetch", (data) => {
 
 function generateGalerie(images) {
 	images.forEach(img => {
-		const template = `<div class="image-container relative">
-		<img class="mehdi" src="${img.image}" width="373px" height="280px"/>
-		</div>`;
+		const template = `<img class="mehdi" src="${img.image}" width="373px" height="280px"/>`;
 		document.querySelector("#galerie").insertAdjacentHTML("afterbegin",template)
-		
 	})
 	const allButtonDelete = document.querySelectorAll(".btn-delete")
 

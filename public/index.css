@@ -32,6 +32,11 @@ body {
 	z-index: 200;
 }
 
+#readme {
+	color: white;
+	text-align: center;
+}
+
 .rainbow {
 	z-index: -2;
 	top: 60%;
