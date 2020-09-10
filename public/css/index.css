@@ -36,6 +36,7 @@ body {
 	padding: 10px;
 	background: #f9934d;
 	border-radius: 10px;
+	box-shadow: inset 0px 0px 3px #88221b50, 0px 10px 20px #88221b66;
 }
 
 #shuffle-panel {
