@@ -65,7 +65,7 @@ class CadavreExquis {
 
 	switch(e) {
 		const part = e.getAttribute("data-part")
-		this.part = part;
+		this.part = part
 		this.hint()
 		this.erase();
 		this.loadTemplate();

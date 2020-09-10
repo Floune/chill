@@ -117,7 +117,7 @@ io.on('connection', (socket) => {
 
 	socket.on("fetch", () => {
 		axios.get(`http://localhost:${port}/fetch`).then(response => {
-			io.emit("fetch", response.data)
+			socket.emit("fetch", response.data)
 		}).catch(e => {
 			console.log(e)
 		})
@@ -131,7 +131,7 @@ io.on('connection', (socket) => {
 		axios.post(`http://localhost:${port}/fetchsingle`, {
 			part: part,
 		}).then(response => {
-			io.emit("fetchSingle", {
+			socket.emit("fetchSingle", {
 				image: response.data,
 				part: data.part,
 			})
