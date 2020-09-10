@@ -69,6 +69,7 @@ class CadavreExquis {
 		if (part === this.part) {
 			return
 		}
+		this.part = part
 		this.hint()
 		this.erase();
 		this.loadTemplate();
