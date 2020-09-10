@@ -85,6 +85,7 @@ class PainterBite {
 
 	setColor(e)  {
 		this.color = e.getAttribute("data-color")
+		this.setActive('[data-color]', e)
 	}
 
 	startDrawing(e) {
@@ -121,18 +122,19 @@ class PainterBite {
 
 	setShape(e) {
 		this.shape = e.getAttribute("data-shape")
+		this.setActive('[data-shape]', e)
 	}
 
 	startFill(e) {
 		this.isFilling = true;
-		this.paint.style.cursor = "crosshair"
+		document.querySelector("body").classList.add("filling")
 	}
 
 	fill(e) {
 		this.context.fillStyle = this.color
 		this.context.fillFlood(e.clientX - this.rect.left, e.clientY - this.rect.top)
 		this.isFilling = false;
-		this.paint.style.cursor = "pointer"
+		document.querySelector("body").classList.remove("filling")
 	}
 
 	bindClickButtons(e) {
@@ -144,6 +146,14 @@ class PainterBite {
 
 	checkInCanvas(e) {
 		return e.clientX - this.rect.left >= 1 && e.clientY - this.rect.top >= 1 && e.clientX - this.rect.left <= this.paint.width && e.clientY - this.rect.top <= this.paint.height
+	}
+
+	setActive(selector, el) {
+		const btns = [...document.querySelectorAll(selector)]
+		btns.map(b => {
+			b.classList.remove('active')
+		})
+		el.classList.add('active')
 	}
 
 

@@ -3,12 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link type="text/css" rel="stylesheet" href="index.css">
-	<link type="text/css" rel="stylesheet" href="paint.css">
-	<link type="text/css" rel="stylesheet" href="toolbar.css">
-	<link type="text/css" rel="stylesheet" href="cdex.css">
-	<script type="text/javascript" src="floodfill.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
+	<link type="text/css" rel="stylesheet" href="/css/index.css">
+	<link type="text/css" rel="stylesheet" href="/css/paint.css">
+	<link type="text/css" rel="stylesheet" href="/css/toolbar.css">
+	<link type="text/css" rel="stylesheet" href="/css/cdex.css">
 	<title>megapaint</title>
 </head>
 <body>
@@ -26,29 +24,27 @@
 			<div id="toolbar">
 
 				<div class="actions">
-
-					<button data-action="setColor" data-color="teal" class="color color--teal"><span class="visually-hidden">teal</span></button>
-					<button data-action="setColor" data-color="pink" class="color color--pink"><span class="visually-hidden">pink</span></button>
-					<button data-action="setColor" data-color="red" class="color color--red"><span class="visually-hidden">red</span></button>
-					<button data-action="setColor" data-color="green" class="color color--green"><span class="visually-hidden">green</span></button>
-					<button data-action="setColor" data-color="gold" class="color color--gold"><span class="visually-hidden">gold</span></button>
-					<button data-action="setColor" data-color="deeppink" class="color color--deeppink"><span class="visually-hidden">deeppink</span></button>
 					<button data-action="setColor" data-color="maroon" class="color color--maroon"><span class="visually-hidden">maroon</span></button>
-					<button data-action="setColor" data-color="lime" class="color color--lime"><span class="visually-hidden">lime</span></button>
-					<button data-action="setColor" data-color="grey" class="color color--grey"><span class="visually-hidden">grey</span></button>
-					<button data-action="setColor" data-color="orange" class="color color--orange"><span class="visually-hidden">orange</span></button>
-					<button data-action="setColor" data-color="white" class="color color--white"><span class="visually-hidden">white</span></button>
-					<button data-action="setColor" data-color="black" class="color color--black"><span class="visually-hidden">black</span></button>
-					<button data-action="setColor" data-color="blue" class="color color--blue"><span class="visually-hidden">blue</span></button>
-					<button data-action="setColor" data-color="lightblue" class="color color--lightblue"><span class="visually-hidden">deep blue</span></button>
-					<button data-action="setColor" data-color="lime" class="color color--lime"><span class="visually-hidden">lime</span></button>
 					<button data-action="setColor" data-color="chocolate" class="color color--chocolate"><span class="visually-hidden">chocolate</span></button>
+					<button data-action="setColor" data-color="red" class="color color--red"><span class="visually-hidden">red</span></button>
+					<button data-action="setColor" data-color="deeppink" class="color color--deeppink"><span class="visually-hidden">deeppink</span></button>
+					<button data-action="setColor" data-color="pink" class="color color--pink"><span class="visually-hidden">pink</span></button>
+					<button data-action="setColor" data-color="orange" class="color color--orange"><span class="visually-hidden">orange</span></button>
+					<button data-action="setColor" data-color="gold" class="color color--gold"><span class="visually-hidden">gold</span></button>
+					<button data-action="setColor" data-color="lime" class="color color--lime"><span class="visually-hidden">lime</span></button>
+					<button data-action="setColor" data-color="green" class="color color--green"><span class="visually-hidden">green</span></button>
+					<button data-action="setColor" data-color="teal" class="color color--teal"><span class="visually-hidden">teal</span></button>
+					<button data-action="setColor" data-color="lightblue" class="color color--lightblue"><span class="visually-hidden">deep blue</span></button>
+					<button data-action="setColor" data-color="blue" class="color color--blue"><span class="visually-hidden">blue</span></button>
+					<button data-action="setColor" data-color="grey" class="color color--grey"><span class="visually-hidden">grey</span></button>
+					<button data-action="setColor" data-color="white" class="color color--white"><span class="visually-hidden">white</span></button>
+					<button data-action="setColor" data-color="black" class="color color--black active"><span class="visually-hidden">black</span></button>
 
 				</div>
 
 
 				<div class="formes">
-					<button data-action="setShape" data-shape="trait" class="action shape-dash"></button>
+					<button data-action="setShape" data-shape="trait" class="action shape-dash active"></button>
 					<button data-action="setShape" data-shape="rond" class="action shape-circle"></button>
 					<button data-action="setShape" data-shape="triangle" class="action shape-triangle"></button>
 					<button title="Remplir" data-action="startFill" class="action action-fill"></button>
@@ -68,7 +64,7 @@
 			</div>
 
 			<div id="switch">
-				<button data-action="switch" data-part="tete">Tête</button>
+				<button data-action="switch" data-part="tete" class="active">Tête</button>
 				<button data-action="switch" data-part="corps">Corps</button>
 				<button data-action="switch" data-part="jambes">Jambes</button>
 			</div>
@@ -83,7 +79,7 @@
 		</div>
 		<div id="shuffle">
 			<div id="shuffle-panel">
-				<button data-action="shuffle">shuffle</button>
+				<button data-action="shuffle" class="action">shuffle</button>
 			</div>
 			<div id="result">
 
@@ -91,24 +87,28 @@
 		</div>
 
 	</div>
-	<script src="cdex.js"></script>
-	<script src="templates.js"></script>
-	<script src="paint.js"></script>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/floodfill.js"></script>
+	<script src="/js/cdex.js"></script>
+	<script src="/js/templates.js"></script>
+	<script src="/js/paint.js"></script>
+
 	<script>
 		var k = [38, 38, 40, 40, 37, 39, 37, 39],
 		n = 0;
 		document.addEventListener("keydown", e => {
 			if (e.keyCode === k[n++]) {
 				if (n === k.length) {
-            window.location.href="/galery.html" // à remplacer par votre code
-            n = 0;
-            return false;
-        }
-    }
-    else {
-    	n = 0;
-    }
-});
+					window.location.href="/galery.html" // à remplacer par votre code
+					n = 0;
+					return false;
+				}
+			}
+			else {
+				n = 0;
+			}
+		});
 </script>	
 </body>
 </html>

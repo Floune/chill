@@ -18,8 +18,10 @@ class CadavreExquis {
 
 	hint() {
 		let msg = "partie: " + this.part
-		var pe = document.querySelector("#hint");
-		pe.innerHTML = msg;
+		var pe = document.querySelector(`[data-part="${this.part}"]`);
+		const parts = [...document.querySelectorAll(`[data-part]`)]
+		parts.map(p => p.classList.remove('active'))
+		pe.classList.add('active')
 	}
 
 	loadTemplate() {
@@ -62,7 +64,11 @@ class CadavreExquis {
 	}
 
 	switch(e) {
-		this.part = e.getAttribute("data-part")
+		const part = e.getAttribute("data-part")
+		
+		if (part === this.part) {
+			return
+		}
 		this.hint()
 		this.erase();
 		this.loadTemplate();

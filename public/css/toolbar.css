@@ -1,0 +1,178 @@
+#toolbar {
+	max-width: 1200px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: center;
+	align-items: center;
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+.actions {
+	display: flex;
+	border-radius: 3px;
+
+}
+
+.action, .color, #switch button {
+	width: 32px;
+	height: 32px;
+	background-position: center;
+	background-repeat: no-repeat;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	margin-left: 1px;
+	box-shadow: inset 0px 0px 3px #fae0b7aa;
+	background-color: #f9c184;
+}
+
+.color {
+	box-shadow: inset 0px 0px 3px #00000050;
+}
+
+.action:hover, #switch button:hover {
+	box-shadow: inset 0px 0px 3px #b24d0caa;
+	background-color: #d4620c;
+}
+
+.action:hover, #switch button:hover, .color:hover {
+	cursor: pointer;
+}
+
+#switch button {
+	width: 150px;
+	margin-left: 3px;
+	margin-right: 3px;
+	color: #88221b;
+}
+
+#shuffle .action {
+	width:100%;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+#switch button.active, .action.active, .color.active {
+	box-shadow: inset 0px 0px 3px #88221b;
+	border: 2px solid #88221b;
+}
+
+.visually-hidden {
+	display: none;
+}
+
+.colors {
+	display: flex;
+	flex-wrap: wrap;
+	border-radius: 3px;
+
+}
+
+.shape-dash {
+	background-image: url("/images/dash.png");
+}
+
+.shape-circle {
+	background-image: url("/images/circle.png");
+}
+
+.shape-triangle {
+	background-image: url("/images/triangle.png");
+}
+
+.action-erase {
+	background-image: url("/images/close.png")
+}
+
+.action-gerase {
+	background-image: url("/images/close(1).png")
+}
+
+.action-share {
+	background-image: url("/images/share.png")
+}
+
+.action-save {
+	background-image: url("/images/save.png")
+}
+
+.action-load {
+	background-image: url("/images/refresh.png");
+}
+
+.action-fill {
+	background-image: url("/images/paint.png")
+}
+
+.action-undo {
+	background-image: url("/images/refresh.png");
+}
+
+.color--black {
+	background-color: black;
+}
+
+.color--yellow {
+	background-color: yellow;
+}
+
+.color--blue {
+	background-color: blue;
+}
+
+.color--red {
+	background-color: red;
+}
+
+.color--green {
+	background-color: green;
+}
+
+.color--pink {
+	background-color: pink;
+}
+
+.color--teal {
+	background-color: teal;
+}
+
+.color--gold {
+	background-color: gold;
+}
+
+.color--deeppink {
+	background-color: deeppink;
+}
+
+.color--lime {
+	background-color: lime;
+}
+
+.color--maroon {
+	background-color: maroon;
+}
+
+.color--grey {
+	background-color: grey;
+}
+
+.color--orange {
+	background-color: orange;
+}
+
+.color--white {
+	background-color: white;
+}
+
+.color--lightblue {
+	background-color: lightblue;
+}
+
+.color--lime {
+	background-color: lime;
+}
+
+.color--chocolate {
+	background-color: chocolate;
+}
