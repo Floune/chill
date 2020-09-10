@@ -33,12 +33,19 @@ body {
 #shuffle {
 	justify-content: center;
 	align-items: center;
-	height: 865px;
-	max-height: 865px;
+	padding: 10px;
+	background: #f9934d;
+	border-radius: 10px;
 }
 
 #shuffle-panel {
 	z-index: 200;
+}
+
+#result {
+	display: flex;
+	flex-direction: column;
+	width: 374px;
 }
 
 #readme {
